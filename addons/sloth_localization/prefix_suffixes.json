@@ -1,0 +1,25 @@
+{
+	"prefixes": [
+		"__ABILITY_",
+		"__ACH_",
+		"__TALENT_",
+		"__UPGRADE_",
+		"__UI_",
+		"__AURA_",
+		"__BONUS_",
+		"__BUFF_",
+		"__CREST_",
+		"__CHARGE_",
+		"__HINT_",
+		"__LABEL_",
+		"__MULTI_UPGRADE_",
+		"__STATS_ABILITY_",
+		"__STATS_MAIN_",
+		"__TOOLTIP_",
+		"__DEBUFF_"
+	],
+	"suffixes": [
+		"_NAME",
+		"_DESC"
+	]
+}

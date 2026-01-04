@@ -1,0 +1,500 @@
+[gd_scene load_steps=3 format=3 uid="uid://b82qoehdexoo5"]
+
+[ext_resource type="Script" uid="uid://crfojilrfa088" path="res://addons/sloth_localization/csv_viewer_dock.gd" id="1_script"]
+
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_top"]
+bg_color = Color(0.12, 0.14, 0.2, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.55, 0.75, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_settings_panel"]
+bg_color = Color(0.14, 0.17, 0.24, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.28, 0.4, 0.55, 0.6)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+
+[node name="CSVViewerDock" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_script")
+
+[node name="OuterMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="OuterMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HeaderContainer" type="HBoxContainer" parent="OuterMargin/VBox"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="OuterMargin/VBox/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+text = "Sloth Localizer Viewer"
+
+[node name="FileInfoLabel" type="Label" parent="OuterMargin/VBox/HeaderContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "File: translation.csv"
+horizontal_alignment = 2
+
+[node name="HeaderSpacer" type="Control" parent="OuterMargin/VBox/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SettingsButton" type="Button" parent="OuterMargin/VBox/HeaderContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "⚙"
+tooltip_text = "Settings"
+
+[node name="ActionsPanel" type="PanelContainer" parent="OuterMargin/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_top")
+
+[node name="Margin" type="MarginContainer" parent="OuterMargin/VBox/ActionsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="ActionsRow" type="HBoxContainer" parent="OuterMargin/VBox/ActionsPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PrimaryActions" type="HBoxContainer" parent="OuterMargin/VBox/ActionsPanel/Margin/ActionsRow"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BtnOpen" type="Button" parent="OuterMargin/VBox/ActionsPanel/Margin/ActionsRow/PrimaryActions"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Open CSV"
+
+[node name="BtnSaveCSV" type="Button" parent="OuterMargin/VBox/ActionsPanel/Margin/ActionsRow/PrimaryActions"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Save CSV"
+
+[node name="BtnAddKey" type="Button" parent="OuterMargin/VBox/ActionsPanel/Margin/ActionsRow/PrimaryActions"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add New Key"
+
+[node name="FiltersPanel" type="PanelContainer" parent="OuterMargin/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_top")
+
+[node name="Margin" type="MarginContainer" parent="OuterMargin/VBox/FiltersPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="FiltersRow" type="HBoxContainer" parent="OuterMargin/VBox/FiltersPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SearchGroup" type="HBoxContainer" parent="OuterMargin/VBox/FiltersPanel/Margin/FiltersRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="LabelSearch" type="Label" parent="OuterMargin/VBox/FiltersPanel/Margin/FiltersRow/SearchGroup"]
+layout_mode = 2
+text = "Search:"
+
+[node name="FilterLineEdit" type="LineEdit" parent="OuterMargin/VBox/FiltersPanel/Margin/FiltersRow/SearchGroup"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Search key or text..."
+
+[node name="VSeparatorFilters" type="VSeparator" parent="OuterMargin/VBox/FiltersPanel/Margin/FiltersRow"]
+layout_mode = 2
+
+[node name="LabelPrefix" type="Label" parent="OuterMargin/VBox/FiltersPanel/Margin/FiltersRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Prefix:"
+
+[node name="PrefixSelector" type="OptionButton" parent="OuterMargin/VBox/FiltersPanel/Margin/FiltersRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 25)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+selected = 0
+item_count = 6
+popup/item_0/text = "All"
+popup/item_0/id = 0
+popup/item_1/text = "No Prefix"
+popup/item_1/id = 1
+popup/item_2/text = "__UI"
+popup/item_2/id = 2
+popup/item_3/text = "__MENU"
+popup/item_3/id = 3
+popup/item_4/text = "__GAME"
+popup/item_4/id = 4
+popup/item_5/text = "__ERROR"
+popup/item_5/id = 5
+
+[node name="LabelSuffix" type="Label" parent="OuterMargin/VBox/FiltersPanel/Margin/FiltersRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Suffix:"
+
+[node name="SuffixSelector" type="OptionButton" parent="OuterMargin/VBox/FiltersPanel/Margin/FiltersRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 25)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+selected = 0
+item_count = 7
+popup/item_0/text = "All"
+popup/item_0/id = 0
+popup/item_1/text = "No Suffix"
+popup/item_1/id = 1
+popup/item_2/text = "_TITLE"
+popup/item_2/id = 2
+popup/item_3/text = "_DESC"
+popup/item_3/id = 3
+popup/item_4/text = "_BTN"
+popup/item_4/id = 4
+popup/item_5/text = "_ERROR"
+popup/item_5/id = 5
+popup/item_6/text = "_SUCCESS"
+popup/item_6/id = 6
+
+[node name="CardsScrollContainer" type="ScrollContainer" parent="OuterMargin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="CardsMargin" type="MarginContainer" parent="OuterMargin/VBox/CardsScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="GridContainer" type="GridContainer" parent="OuterMargin/VBox/CardsScrollContainer/CardsMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="BottomControlsPanel" type="PanelContainer" parent="OuterMargin/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_top")
+
+[node name="Margin" type="MarginContainer" parent="OuterMargin/VBox/BottomControlsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="BottomRow" type="HBoxContainer" parent="OuterMargin/VBox/BottomControlsPanel/Margin"]
+layout_mode = 2
+alignment = 2
+
+[node name="LabelSize" type="Label" parent="OuterMargin/VBox/BottomControlsPanel/Margin/BottomRow"]
+layout_mode = 2
+text = "Per page:"
+
+[node name="BottomSizeSelector" type="OptionButton" parent="OuterMargin/VBox/BottomControlsPanel/Margin/BottomRow"]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "10"
+popup/item_0/id = 10
+popup/item_1/text = "20"
+popup/item_1/id = 20
+popup/item_2/text = "50"
+popup/item_2/id = 50
+popup/item_3/text = "100"
+popup/item_3/id = 100
+
+[node name="BottomPrevBtn" type="Button" parent="OuterMargin/VBox/BottomControlsPanel/Margin/BottomRow"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "<"
+
+[node name="BottomPageLabel" type="Label" parent="OuterMargin/VBox/BottomControlsPanel/Margin/BottomRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Page 1 / 108 - 1073 items"
+
+[node name="BottomNextBtn" type="Button" parent="OuterMargin/VBox/BottomControlsPanel/Margin/BottomRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ">"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a File"
+size = Vector2i(800, 600)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.csv ; CSV Files")
+
+[node name="EditDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Edit Translation"
+size = Vector2i(600, 400)
+unresizable = true
+
+[node name="InlineEditDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Edit Field"
+size = Vector2i(500, 300)
+unresizable = true
+
+[node name="RichEditDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Rich Text Editor"
+size = Vector2i(800, 600)
+unresizable = true
+
+[node name="AddKeyDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Add New Translation Key"
+size = Vector2i(700, 600)
+unresizable = true
+
+[node name="DeleteConfirmDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "Delete Translation Key"
+ok_button_text = "Delete"
+
+[node name="ManagePrefixesDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Manage Key Prefixes"
+size = Vector2i(400, 500)
+unresizable = true
+
+[node name="ManageSuffixesDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Manage Key Suffixes"
+size = Vector2i(400, 500)
+unresizable = true
+
+[node name="FilterTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.3
+one_shot = true
+
+[node name="SettingsOverlay" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 0
+
+[node name="SettingsPanel" type="PanelContainer" parent="SettingsOverlay"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_settings_panel")
+
+[node name="SettingsMargin" type="MarginContainer" parent="SettingsOverlay/SettingsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+size_flags_vertical = 3
+size_flags_horizontal = 3
+
+[node name="SettingsVBox" type="VBoxContainer" parent="SettingsOverlay/SettingsPanel/SettingsMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+size_flags_vertical = 3
+size_flags_horizontal = 3
+
+[node name="SettingsHeader" type="HBoxContainer" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SettingsTitle" type="Label" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Settings"
+
+[node name="SettingsCloseButton" type="Button" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Close"
+
+[node name="SettingsContentScroll" type="ScrollContainer" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+
+[node name="SettingsContentMargin" type="MarginContainer" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+size_flags_horizontal = 3
+
+[node name="SettingsContentVBox" type="VBoxContainer" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+size_flags_horizontal = 3
+
+[node name="SettingsLanguagesSection" type="VBoxContainer" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+size_flags_horizontal = 3
+
+[node name="SettingsLanguagesLabel" type="Label" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsLanguagesSection"]
+layout_mode = 2
+text = "Languages"
+
+[node name="SettingsSourcePanel" type="PanelContainer" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsLanguagesSection"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_top")
+
+[node name="SettingsSourceMargin" type="MarginContainer" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsLanguagesSection/SettingsSourcePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="SettingsSourceVBox" type="VBoxContainer" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsLanguagesSection/SettingsSourcePanel/SettingsSourceMargin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="SettingsSourceLabel" type="Label" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsLanguagesSection/SettingsSourcePanel/SettingsSourceMargin/SettingsSourceVBox"]
+layout_mode = 2
+text = "Source Language"
+
+[node name="SettingsSourceSelector" type="OptionButton" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsLanguagesSection/SettingsSourcePanel/SettingsSourceMargin/SettingsSourceVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SettingsLanguagesDivider" type="HSeparator" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsLanguagesSection"]
+layout_mode = 2
+
+[node name="SettingsVisibleHeader" type="HBoxContainer" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsLanguagesSection"]
+layout_mode = 2
+theme_override_constants/separation = 8
+size_flags_horizontal = 3
+
+[node name="SettingsVisibleLabel" type="Label" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsLanguagesSection/SettingsVisibleHeader"]
+layout_mode = 2
+text = "Visible Languages"
+
+[node name="SettingsVisibleSpacer" type="Control" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsLanguagesSection/SettingsVisibleHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SettingsPresetLabel" type="Label" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsLanguagesSection/SettingsVisibleHeader"]
+layout_mode = 2
+text = "Preset:"
+
+[node name="SettingsPresetSelector" type="OptionButton" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsLanguagesSection/SettingsVisibleHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(120, 0)
+
+[node name="SettingsVisibleScroll" type="ScrollContainer" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsLanguagesSection"]
+layout_mode = 2
+size_flags_vertical = 0
+custom_minimum_size = Vector2(0, 140)
+horizontal_scroll_mode = 0
+size_flags_horizontal = 3
+
+[node name="SettingsVisibleGrid" type="GridContainer" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsLanguagesSection/SettingsVisibleScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 2
+size_flags_horizontal = 3
+
+[node name="SettingsSectionDivider" type="HSeparator" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox"]
+layout_mode = 2
+
+[node name="SettingsKeysSection" type="VBoxContainer" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+size_flags_horizontal = 3
+
+[node name="SettingsKeysLabel" type="Label" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsKeysSection"]
+layout_mode = 2
+text = "Keys"
+
+[node name="SettingsManagePrefixes" type="Button" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsKeysSection"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Manage Prefixes"
+size_flags_horizontal = 3
+
+[node name="SettingsManageSuffixes" type="Button" parent="SettingsOverlay/SettingsPanel/SettingsMargin/SettingsVBox/SettingsContentScroll/SettingsContentMargin/SettingsContentVBox/SettingsKeysSection"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Manage Suffixes"
+size_flags_horizontal = 3
